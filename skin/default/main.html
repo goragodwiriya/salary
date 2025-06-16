@@ -1,0 +1,28 @@
+<div class="bg_color">
+  <header class="header bg_header">
+    <div class="top_header">
+      <h2 class="logo_color one_line"><a href="index.php" id=logo title="{WEBTITLE}" class="{LOGO_CLASS}">{LOGO}</a></h2>
+      <div class="header_btn_wrapper">
+        {LINE}
+        <a id=dark_mode class="header_btn {DARKMODE}" title="{LNG_Dark mode}"></a>
+        <div class="header_btn language-menu" data-text="{LANGUAGE}">
+          <ul>{LANGUAGES}</ul>
+        </div>
+        <span>{LOGIN}</span>
+      </div>
+    </div>
+    <div class="menu_wrapper menu_bg">
+      <nav id=topmenu class="topmenu slidemenu">
+        <ul>{MENUS}</ul>
+      </nav>
+    </div>
+  </header>
+  <div id="skip" class="clear">
+    <main id="content">{CONTENT}</main>
+  </div>
+</div>
+<script>
+  $G(window).Ready(function() {
+    initWeb();
+  });
+</script>

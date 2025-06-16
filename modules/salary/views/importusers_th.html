@@ -1,0 +1,47 @@
+<h3>คำแนะนำในการนำเข้าข้อมูลพนักงาน</h3>
+<ol>
+  <li>การนำเข้าให้ใส่ข้อมูลลงในไฟล์ต้นฉบับตามตัวอย่างนี้เท่านั้น <a id=example href="export.php?module=salary-export&type=empoloyee" target="_blank">empoloyee.csv</a></li>
+  <li>การเข้ารหัสไฟล์ที่สนับสนุนคือ {ENCODE}</li>
+  <li>บรรทัดแรกของไฟล์จะต้องเป็นหัวข้อคอลัมน์เท่านั้น</li>
+  <li>{LNG_Email} และ {LNG_Identification No.} ใช้ในการตรวจสอบและป้องกันข้อมูลซ้ำ</li>
+  <li>หากพบข้อมูลซ้ำ ระบบจะอัปเดตข้อมูลให้เป็นข้อมูลล่าสุด</li>
+  <li>รหัสผ่านสำหรับพนักงานใหม่จะเป็น "123456"</li>
+</ol>
+<h3>รูปแบบข้อมูลในไฟล์ CSV</h3>
+<table class="fullwidth">
+  <thead>
+    <tr>
+      <th>{LNG_Name} *</th>
+      <th>{LNG_Identification No.} *</th>
+      <th>{LNG_Email} *</th>
+      <th>{LNG_Sex}</th>
+      <th>{LNG_Department}</th>
+      <th>{LNG_Position}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>นายทดสอบ ระบบ</td>
+      <td>1234567890123</td>
+      <td>test.system</td>
+      <td>m</td>
+      <td>บริหาร</td>
+      <td>พนักงาน</td>
+    </tr>
+    <tr>
+      <td>นางสาวตัวอย่าง ข้อมูล</td>
+      <td>9876543210987</td>
+      <td>example.data</td>
+      <td>f</td>
+      <td>บุคคล</td>
+      <td>หัวหน้าแผนก</td>
+    </tr>
+  </tbody>
+</table>
+<h3>หมายเหตุ</h3>
+<ul>
+  <li><strong>{LNG_Sex}:</strong> ใช้ "m" สำหรับชาย, "f" สำหรับหญิง, "u" สำหรับไม่ระบุ</li>
+  <li><strong>{LNG_Department}:</strong> ต้องตรงกับชื่อแผนกที่มีในระบบ หากไม่มีจะถูกสร้างใหม่</li>
+  <li><strong>{LNG_Position}:</strong> ต้องตรงกับชื่อตำแหน่งที่มีในระบบ หากไม่มีจะถูกสร้างใหม่</li>
+  <li><strong>รหัสผ่าน:</strong> จะถูกตั้งค่าเป็น "123456" สำหรับพนักงานใหม่</li>
+</ul>

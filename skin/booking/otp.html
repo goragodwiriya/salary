@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="{LANGUAGE}" dir="ltr">
+
+<head>
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Kotchasan">
+  <link rel="shortcut icon" href="{WEBURL}favicon.ico">
+  <title>{LNG_Mobile Phone Verification}</title>
+  <script src="index.php/js/view/index/{LANGUAGE}?{REV}"></script>
+  <link rel=stylesheet href="index.php/css/view/index?{REV}">
+  <style>
+    .otp-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: var(--wrapper-background-color);
+    }
+
+    #otp-frm {
+      width: 400px;
+      max-width: 90%;
+      padding: 40px 32px;
+    }
+
+    #otp-frm h2 {
+      font-weight: bold;
+    }
+
+    #otp-frm fieldset,
+    #otp-frm p {
+      margin: 20px 0;
+    }
+
+    .otp-input {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .otp-input input {
+      text-align: center;
+      width: 3.5rem;
+      height: 3.5rem;
+      line-height: 3.5rem;
+      font-size: 24px;
+      font-weight: bold;
+      padding: 0;
+      background-color: var(--button);
+      border-style: none;
+    }
+
+    .otp-input input:focus {
+      border-style: solid;
+    }
+
+    @media screen and (min-width: 401px) {
+      #otp-frm {
+        background-color: var(--content-bg);
+        box-shadow: 0 0 10px var(--shadow);
+        border-color: var(--border);
+        border-style: solid;
+        border-radius: 0.5rem;
+      }
+
+    }
+  </style>
+</head>
+
+<body>
+  <div class="otp-wrapper">
+    <form id="otp-frm" method="post" autocomplete=off>
+      <header>
+        <h2 class="center color-green">{LNG_Mobile Phone Verification}</h2>
+      </header>
+      <p class="center">{LNG_Enter the 4-digit verification code that was sent to your phone number.}</p>
+      <fieldset class="otp-input">
+        <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" autofocus>
+        <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1">
+        <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1">
+        <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1">
+      </fieldset>
+      <fieldset>
+        <button type="button" id="otp-submit" class="button save large wide">{LNG_Verify Account}</button>
+        <input type="hidden" id="otp-token" value="{TOKEN}">
+        <input type="hidden" id="otp-id" value="{ID}">
+      </fieldset>
+      <p class="center">
+        {LNG_Didn&#039;t receive code?}
+        <a id="otp-resend" href="javascript:void(0)">{LNG_Resend}</a>
+        <span id="otp-again">{LNG_Send again in} <em id="otp-timer">{TIME}</em></span>
+      </p>
+    </form>
+    <script>
+      var form = $E('otp-frm'),
+        inputs = [],
+        submit = $E('otp-submit');
+
+      let handleKeyDown = function(e) {
+        if (
+          !/^[0-9]{1}$/.test(e.key)
+          && e.key !== 'Backspace'
+          && e.key !== 'Delete'
+          && e.key !== 'Tab'
+          && !(['V', 'v'].indexOf(e.key) > -1 && GEvent.isCtrlKey(e))
+        ) {
+          GEvent.stop(e);
+        }
+
+        if (e.key === 'Delete' || e.key === 'Backspace') {
+          let index = inputs.indexOf(e.target);
+          if (index > 0) {
+            inputs[index].value = '';
+            inputs[index - 1].value = '';
+            inputs[index - 1].focus();
+          }
+        }
+      };
+
+      let handleInput = function(e) {
+        let input = GEvent.element(e),
+          index = inputs.indexOf(input);
+        if (input.value) {
+          if (index < inputs.length - 1) {
+            inputs[index + 1].focus();
+          } else {
+            submit.focus();
+          }
+        }
+      };
+
+      let handleFocus = function(e) {
+        GEvent.element(e).select();
+      };
+
+      let handlePaste = function(e) {
+        getTextFromClipboard(function(text) {
+          if (!new RegExp(`^[0-9]{${inputs.length}}$`).test(text)) {
+            return;
+          }
+          let digits = text.split('');
+          inputs.forEach((input, index) => input.value = digits[index]);
+          submit.focus();
+        });
+        GEvent.stop(e);
+      };
+
+      let handleResend = function(e) {
+        var q = 'action=resend&id=' + $E('otp-id').value +
+          '&token=' + $E('otp-token').value;
+        send(WEB_URL + 'index.php/index/model/otp/action', q, doFormSubmit);
+      };
+
+      let handleSubmit = function(e) {
+        var number = [];
+        forEach(inputs, function() {
+          if (this.value == '') {
+            this.invalid();
+            alert(trans('Please fill in'));
+            this.focus();
+            return true;
+          } else {
+            number.push(this.value);
+          }
+        });
+        if (number.length == 4) {
+          var q = 'action=verified&id=' + $E('otp-id').value +
+            '&token=' + $E('otp-token').value +
+            '&number=' + number.join('');
+          send(WEB_URL + 'index.php/index/model/otp/action', q, doFormSubmit);
+        }
+      };
+
+      let handleTimeout = function() {
+        $E('otp-resend').style.display = null;
+        $E('otp-again').style.display = 'none';
+      };
+
+      forEach(form.querySelectorAll('input[type=text]'), function() {
+        inputs.push(this);
+        $G(this).addEvent('input', handleInput);
+        $G(this).addEvent('paste', handlePaste);
+        $G(this).addEvent('keydown', handleKeyDown);
+        $G(this).addEvent('focus', handleFocus);
+      });
+
+      $E('otp-resend').style.display = 'none';
+      callClick('otp-resend', handleResend);
+      callClick('otp-submit', handleSubmit);
+      new Clock('otp-timer', {
+        reverse: true,
+        onTimeOut: handleTimeout
+      });
+    </script>
+  </div>
+</body>
+
+</html>
