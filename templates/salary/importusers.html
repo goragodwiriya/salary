@@ -1,0 +1,49 @@
+<aside data-component="sidebar"></aside>
+<div class="main-content">
+  <div>
+    <header data-component="topbar"></header>
+    <main class="content">
+      <form data-form="salaryImportUsers" action="api/salary/importusers/save" method="post" data-ajax-submit="true" data-load-api="api/salary/importusers/get"
+            enctype="multipart/form-data" autocomplete="off">
+        <div class="card-groups">
+          <header>
+            <div>
+              <h1 class="icon-group" data-i18n>{LNG_Import Employee Data}</h1>
+              <p data-i18n>{LNG_Create or update employee accounts from a CSV file}</p>
+            </div>
+            <div>
+              <a class="btn icon-excel" data-attr="href:sample_url" target="_blank" data-i18n>{LNG_Sample file}</a>
+            </div>
+          </header>
+          <div class="content-body">
+            <fieldset>
+              <legend class="icon-excel" data-i18n>{LNG_Import} {LNG_Employee}</legend>
+              <div>
+                <label for="import" data-i18n>{LNG_Browse file}</label>
+                <span class="form-control icon-excel">
+                  <input type="file" id="import" name="import" accept=".csv" required>
+                </span>
+                <div class="comment">employee.csv (<span data-text="encoding"></span>)</div>
+              </div>
+              <div class="message">
+                <p data-i18n>{LNG_The file must be in CSV format, encoding UTF-8 or TIS-620 only.}</p>
+                <ul class="salary-import-help">
+                  <li data-i18n>{LNG_Columns of the file must be} : {LNG_Name}, {LNG_Identification No.}, {LNG_Email}, {LNG_Sex}, {LNG_Department}, {LNG_Position}</li>
+                  <li data-i18n>{LNG_Existing employees are matched by identification number or email}</li>
+                  <li data-i18n>{LNG_New employees get the default password 123456}</li>
+                  <li data-i18n>{LNG_Department and position are created automatically if they do not exist}</li>
+                </ul>
+              </div>
+            </fieldset>
+            <fieldset class="submit">
+              <button type="submit" class="btn btn-primary icon-import" data-i18n>{LNG_Import}</button>
+            </fieldset>
+          </div>
+        </div>
+      </form>
+    </main>
+  </div>
+  <footer class="footer">
+    <p class="center">&copy; 2026 Now.js - <a href="https://nowjs.net">nowjs.net</a></p>
+  </footer>
+</div>

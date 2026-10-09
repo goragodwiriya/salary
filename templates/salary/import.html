@@ -1,0 +1,66 @@
+<aside data-component="sidebar"></aside>
+<div class="main-content">
+  <div>
+    <header data-component="topbar"></header>
+    <main class="content">
+      <form data-form="salaryImport" action="api/salary/import/save" method="post" data-ajax-submit="true" data-load-api="api/salary/import/get"
+            enctype="multipart/form-data" autocomplete="off">
+        <div class="card-groups">
+          <header>
+            <div>
+              <h1 class="icon-import" data-i18n>{LNG_Import Salary Data}</h1>
+              <p data-i18n>{LNG_Import salary from a CSV file}</p>
+            </div>
+            <div>
+              <a class="btn icon-excel" data-attr="href:sample_url" target="_blank" data-i18n>{LNG_Sample file}</a>
+            </div>
+          </header>
+          <div class="content-body">
+            <fieldset>
+              <legend class="icon-excel" data-i18n>{LNG_Import} {LNG_Salary}</legend>
+              <div>
+                <label for="import" data-i18n>{LNG_Browse file}</label>
+                <span class="form-control icon-excel">
+                  <input type="file" id="import" name="import" accept=".csv" required>
+                </span>
+                <div class="comment">salary.csv (<span data-text="encoding"></span>)</div>
+              </div>
+              <div class="form-group">
+                <div class="width50">
+                  <label for="year" data-i18n>{LNG_Year}</label>
+                  <span class="form-control icon-calendar">
+                    <select id="year" name="year" data-options-key="year" data-attr="value:year" required></select>
+                  </span>
+                </div>
+                <div class="width50">
+                  <label for="month" data-i18n>{LNG_Month}</label>
+                  <span class="form-control icon-calendar">
+                    <select id="month" name="month" data-options-key="month" data-attr="value:month" required></select>
+                  </span>
+                </div>
+              </div>
+              <div class="message">
+                <p data-i18n>{LNG_The file must be in CSV format, encoding UTF-8 or TIS-620 only.}</p>
+                <ul class="salary-import-help">
+                  <li><span data-i18n>{LNG_Columns of the file must be}</span> : <span data-text="columns"></span></li>
+                  <li><span data-i18n>{LNG_Optional columns}</span> : <span data-text="optional_columns"></span></li>
+                  <li data-i18n>{LNG_Employees are matched by identification number, import employee data first}</li>
+                  <li data-i18n>{LNG_If overtime hours are filled in, overtime is calculated from the basic salary}</li>
+                  <li data-if="auto_calculate == 1" data-i18n>{LNG_Social security, tax and net salary are calculated automatically}</li>
+                  <li data-if="auto_calculate != 1" data-i18n>{LNG_Social security and tax are taken from the file, net salary is calculated automatically}</li>
+                  <li data-i18n>{LNG_If a record of the selected month already exists it will be updated}</li>
+                </ul>
+              </div>
+            </fieldset>
+            <fieldset class="submit">
+              <button type="submit" class="btn btn-primary icon-import" data-i18n>{LNG_Import}</button>
+            </fieldset>
+          </div>
+        </div>
+      </form>
+    </main>
+  </div>
+  <footer class="footer">
+    <p class="center">&copy; 2026 Now.js - <a href="https://nowjs.net">nowjs.net</a></p>
+  </footer>
+</div>

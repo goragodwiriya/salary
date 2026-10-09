@@ -1,0 +1,150 @@
+<aside data-component="sidebar"></aside>
+<div class="main-content">
+  <div>
+    <header data-component="topbar"></header>
+    <main class="content">
+      <form data-form="salaryRecord" action="api/salary/record/save" method="post" data-ajax-submit="true" data-load-api="api/salary/record/get"
+            data-load-query-params="true" data-on-load="salaryRecordForm" autocomplete="off">
+        <div class="card-groups">
+          <header>
+            <div>
+              <h1 class="icon-money" data-i18n>{LNG_Salary information}</h1>
+              <p data-i18n>{LNG_List of} {LNG_Salary}</p>
+            </div>
+            <div>
+              <a class="btn btn-secondary icon-back" href="/salary-list" data-i18n>{LNG_Back}</a>
+            </div>
+          </header>
+          <div class="content-body">
+            <fieldset>
+              <legend class="icon-user" data-i18n>{LNG_Employee}</legend>
+              <div data-if="id == ''">
+                <label for="member_id" data-i18n>{LNG_Name} *</label>
+                <span class="form-control icon-user">
+                  <select id="member_id" name="member_id" data-options-key="member_id" data-attr="value:member_id" required></select>
+                </span>
+              </div>
+              <div data-if="id != ''">
+                <label for="member_text" data-i18n>{LNG_Name}</label>
+                <span class="form-control icon-user">
+                  <input type="text" id="member_text" name="member_text" data-attr="value:member_text" readonly>
+                </span>
+              </div>
+              <div class="form-group" data-if="id == ''">
+                <div class="width50">
+                  <label for="year" data-i18n>{LNG_Year} *</label>
+                  <span class="form-control icon-calendar">
+                    <select id="year" name="year" data-options-key="year" data-attr="value:year" required></select>
+                  </span>
+                </div>
+                <div class="width50">
+                  <label for="month" data-i18n>{LNG_Month} *</label>
+                  <span class="form-control icon-calendar">
+                    <select id="month" name="month" data-options-key="month" data-attr="value:month" required></select>
+                  </span>
+                </div>
+              </div>
+              <div data-if="id != ''">
+                <label for="period_text" data-i18n>{LNG_Month} {LNG_Year}</label>
+                <span class="form-control icon-calendar">
+                  <input type="text" id="period_text" name="period_text" data-attr="value:period_text" readonly>
+                </span>
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend class="icon-money" data-i18n>{LNG_Income}</legend>
+              <div class="form-group">
+                <div class="width50">
+                  <label for="basic_salary" data-i18n>{LNG_Basic Salary}</label>
+                  <span class="form-control icon-money">
+                    <input type="number" id="basic_salary" name="basic_salary" data-attr="value:basic_salary" step="0.01" min="0">
+                  </span>
+                </div>
+                <div class="width50">
+                  <label for="allowance" data-i18n>{LNG_Allowance}</label>
+                  <span class="form-control icon-money">
+                    <input type="number" id="allowance" name="allowance" data-attr="value:allowance" step="0.01" min="0">
+                  </span>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="width50">
+                  <label for="overtime_hours" data-i18n>{LNG_Overtime Hours}</label>
+                  <span class="form-control icon-clock">
+                    <input type="number" id="overtime_hours" name="overtime_hours" data-attr="value:overtime_hours" step="0.01" min="0">
+                  </span>
+                  <div class="comment" data-i18n>{LNG_Fill in to calculate overtime from the basic salary}</div>
+                </div>
+                <div class="width50">
+                  <label for="overtime" data-i18n>{LNG_Overtime}</label>
+                  <span class="form-control icon-money">
+                    <input type="number" id="overtime" name="overtime" data-attr="value:overtime" step="0.01" min="0">
+                  </span>
+                </div>
+              </div>
+              <div>
+                <label for="bonus" data-i18n>{LNG_Bonus}</label>
+                <span class="form-control icon-money">
+                  <input type="number" id="bonus" name="bonus" data-attr="value:bonus" step="0.01" min="0">
+                </span>
+              </div>
+              <div class="comment">
+                <span data-i18n>{LNG_Total income}</span> : <strong data-role="total_income">0.00</strong>
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend class="icon-minus" data-i18n>{LNG_Deduction}</legend>
+              <div>
+                <label for="deduction" data-i18n>{LNG_Deduction}</label>
+                <span class="form-control icon-money">
+                  <input type="number" id="deduction" name="deduction" data-attr="value:deduction" step="0.01" min="0">
+                </span>
+              </div>
+              <div class="form-group">
+                <div class="width50">
+                  <label for="social_security" data-i18n>{LNG_Social Security}</label>
+                  <span class="form-control icon-money">
+                    <input type="text" id="social_security" name="social_security" data-attr="value:social_security" readonly>
+                  </span>
+                  <div class="comment" data-if="auto_calculate == 1" data-i18n>{LNG_Auto calculated from settings}</div>
+                  <div class="comment" data-if="auto_calculate != 1" data-i18n>{LNG_Auto calculate is turned off, fill in the amount}</div>
+                </div>
+                <div class="width50">
+                  <label for="tax" data-i18n>{LNG_Income Tax}</label>
+                  <span class="form-control icon-money">
+                    <input type="text" id="tax" name="tax" data-attr="value:tax" readonly>
+                  </span>
+                  <div class="comment" data-if="auto_calculate == 1" data-i18n>{LNG_Auto calculated from settings}</div>
+                  <div class="comment" data-if="auto_calculate != 1" data-i18n>{LNG_Auto calculate is turned off, fill in the amount}</div>
+                </div>
+              </div>
+              <div>
+                <label for="net_salary" data-i18n>{LNG_Net Salary}</label>
+                <span class="form-control icon-money">
+                  <input type="text" id="net_salary" name="net_salary" data-attr="value:net_salary" readonly>
+                </span>
+                <div class="comment" data-i18n>{LNG_Calculated automatically}</div>
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend class="icon-file" data-i18n>{LNG_Remark}</legend>
+              <div>
+                <label for="remark" data-i18n>{LNG_Remark}</label>
+                <span class="form-control icon-file">
+                  <textarea id="remark" name="remark" rows="3" data-text="remark"></textarea>
+                </span>
+              </div>
+            </fieldset>
+            <fieldset class="submit">
+              <button type="submit" class="btn btn-primary icon-save" data-i18n>{LNG_Save}</button>
+              <input type="hidden" name="id" data-attr="value:id">
+            </fieldset>
+          </div>
+        </div>
+      </form>
+    </main>
+  </div>
+  <footer class="footer">
+    <p class="center">&copy; 2026 Now.js - <a href="https://nowjs.net">nowjs.net</a></p>
+  </footer>
+</div>

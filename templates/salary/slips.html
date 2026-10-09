@@ -1,0 +1,59 @@
+<aside data-component="sidebar"></aside>
+<div class="main-content">
+  <div>
+    <header data-component="topbar"></header>
+    <main class="content">
+      <div class="card-groups">
+        <header>
+          <div>
+            <h1 class="icon-money" data-i18n>{LNG_My Slip}</h1>
+            <p data-i18n>{LNG_Your salary history}</p>
+          </div>
+        </header>
+        <div class="content-body">
+          <div class="tablebody">
+            <form data-table-filter="salarySlips" class="table_nav">
+              <div>
+                <label for="year" data-i18n>{LNG_Year}</label>
+                <span class="form-control">
+                  <select name="year">
+                    <option value="" data-i18n>{LNG_all items}</option>
+                  </select>
+                </span>
+              </div>
+            </form>
+            <table class="table border fullwidth" data-table="salarySlips" data-source="api/salary/slips" data-default-sort="year desc, month desc" data-page-size="30"
+                   data-action-url="api/salary/slips/action"
+                   data-row-actions='{
+                      "view": {
+                        "title": "Details of",
+                        "className": "btn btn-info icon-info"
+                      }
+                    }'>
+              <thead>
+                <tr>
+                  <th data-field="month" data-sort="month" class="center" data-cell-class="center nowrap" data-template="${period_text}" data-i18n>{LNG_Month} {LNG_Year}</th>
+                  <th data-field="basic_salary" data-sort="basic_salary" class="right" data-cell-class="right nowrap" data-format="currency" data-i18n>{LNG_Basic Salary}</th>
+                  <th data-field="allowance" class="right" data-cell-class="right nowrap" data-format="currency" data-i18n>{LNG_Allowance}</th>
+                  <th data-field="overtime" class="right" data-cell-class="right nowrap" data-format="currency" data-i18n>{LNG_Overtime}</th>
+                  <th data-field="bonus" class="right" data-cell-class="right nowrap" data-format="currency" data-i18n>{LNG_Bonus}</th>
+                  <th data-field="deduction" class="right" data-cell-class="right nowrap" data-format="currency" data-i18n>{LNG_Deduction}</th>
+                  <th data-field="social_security" class="right" data-cell-class="right nowrap" data-format="currency" data-i18n>{LNG_Social Security}</th>
+                  <th data-field="tax" class="right" data-cell-class="right nowrap" data-format="currency" data-i18n>{LNG_Income Tax}</th>
+                  <th data-field="net_salary" data-sort="net_salary" class="right" data-cell-class="right nowrap salary-net" data-format="currency" data-i18n>{LNG_Net Salary}</th>
+                  <th data-field="create_date" data-sort="create_date" class="center" data-cell-class="center nowrap" data-format="date" data-i18n>{LNG_Date}</th>
+                  <th data-field="print_url" class="center" data-cell-class="center"
+                      data-template="<a class='btn btn-secondary icon-print' href='${print_url}' target='_blank' title='{LNG_Print}'></a>" data-i18n>{LNG_Print}</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <footer class="footer">
+    <p class="center">&copy; 2026 Now.js - <a href="https://nowjs.net">nowjs.net</a></p>
+  </footer>
+</div>

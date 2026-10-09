@@ -1,0 +1,134 @@
+<aside data-component="sidebar"></aside>
+<div class="main-content">
+  <div>
+    <header data-component="topbar"></header>
+    <main class="content">
+      <form data-form="salarySettings" action="api/salary/settings/save" method="post" data-ajax-submit="true" data-load-api="api/salary/settings/get" autocomplete="off">
+        <div class="card-groups">
+          <header>
+            <div>
+              <h1 class="icon-money" data-i18n>{LNG_Module Settings} {LNG_Salary}</h1>
+              <p data-i18n>{LNG_Values used to calculate salary of every employee}</p>
+            </div>
+          </header>
+          <div class="content-body">
+            <fieldset>
+              <legend class="icon-percent" data-i18n>{LNG_Tax and Deductions}</legend>
+              <div>
+                <label for="salary_tax" data-i18n>{LNG_Income Tax} %</label>
+                <span class="form-control icon-money">
+                  <input type="number" id="salary_tax" name="salary_tax" data-attr="value:salary_tax" step="0.01" min="0" max="100">
+                </span>
+                <div class="comment" data-i18n>{LNG_Fill in 0 to use the calculation of steps according to Thai law. Or the desired percentage (such as 3 for 3%)}</div>
+              </div>
+              <div>
+                <label for="salary_tax_allowance" data-i18n>{LNG_Tax allowance per year}</label>
+                <span class="form-control icon-money">
+                  <input type="number" id="salary_tax_allowance" name="salary_tax_allowance" data-attr="value:salary_tax_allowance" step="0.01" min="0">
+                </span>
+                <div class="comment" data-i18n>{LNG_Personal allowance of 60,000 baht plus other allowances that every employee gets (tax brackets only). Expenses, social security and other deductions are deducted automatically}</div>
+              </div>
+              <div class="form-group">
+                <div class="width50">
+                  <label for="salary_social" data-i18n>{LNG_Social Security} %</label>
+                  <span class="form-control icon-money">
+                    <input type="number" id="salary_social" name="salary_social" data-attr="value:salary_social" step="0.01" min="0" max="100">
+                  </span>
+                  <div class="comment" data-i18n>{LNG_Social security percentage (employee contribution)}</div>
+                </div>
+                <div class="width50">
+                  <label for="salary_social_employer" data-i18n>{LNG_Social Security Employer} %</label>
+                  <span class="form-control icon-money">
+                    <input type="number" id="salary_social_employer" name="salary_social_employer" data-attr="value:salary_social_employer" step="0.01" min="0" max="100">
+                  </span>
+                  <div class="comment" data-i18n>{LNG_Social security percentage (employer contribution)}</div>
+                </div>
+              </div>
+              <div>
+                <label for="salary_social_max" data-i18n>{LNG_Social Security Max Amount}</label>
+                <span class="form-control icon-money">
+                  <input type="number" id="salary_social_max" name="salary_social_max" data-attr="value:salary_social_max" step="0.01" min="0">
+                </span>
+                <div class="comment" data-i18n>{LNG_Maximum amount for social security calculation}</div>
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend class="icon-config" data-i18n>{LNG_Calculation Settings}</legend>
+              <p class="comment" data-i18n>{LNG_Used when overtime hours are filled in. Hourly rate = basic salary / (working days x working hours)}</p>
+              <div>
+                <label for="salary_overtime_rate" data-i18n>{LNG_Overtime Rate}</label>
+                <span class="form-control icon-clock">
+                  <input type="number" id="salary_overtime_rate" name="salary_overtime_rate" data-attr="value:salary_overtime_rate" step="0.1" min="1" max="10">
+                </span>
+                <div class="comment" data-i18n>{LNG_Overtime hourly rate multiplier (normal rate x this value)}</div>
+              </div>
+              <div class="form-group">
+                <div class="width50">
+                  <label for="salary_working_days" data-i18n>{LNG_Working Days per Month}</label>
+                  <span class="form-control icon-calendar">
+                    <input type="number" id="salary_working_days" name="salary_working_days" data-attr="value:salary_working_days" min="1" max="31">
+                  </span>
+                  <div class="comment" data-i18n>{LNG_Standard working days per month for calculation}</div>
+                </div>
+                <div class="width50">
+                  <label for="salary_working_hours" data-i18n>{LNG_Working Hours per Day}</label>
+                  <span class="form-control icon-clock">
+                    <input type="number" id="salary_working_hours" name="salary_working_hours" data-attr="value:salary_working_hours" step="0.5" min="1" max="24">
+                  </span>
+                  <div class="comment" data-i18n>{LNG_Standard working hours per day}</div>
+                </div>
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend class="icon-valid" data-i18n>{LNG_Approval Settings}</legend>
+              <div>
+                <label for="salary_require_approval" data-i18n>{LNG_Require Approval}</label>
+                <span class="form-control icon-valid">
+                  <select id="salary_require_approval" name="salary_require_approval" data-options-key="salary_require_approval" data-attr="value:salary_require_approval"></select>
+                </span>
+                <div class="comment" data-i18n>{LNG_Require approval before salary payment}</div>
+              </div>
+              <div>
+                <label for="salary_auto_calculate" data-i18n>{LNG_Auto Calculate}</label>
+                <span class="form-control icon-config">
+                  <select id="salary_auto_calculate" name="salary_auto_calculate" data-options-key="salary_auto_calculate" data-attr="value:salary_auto_calculate"></select>
+                </span>
+                <div class="comment" data-i18n>{LNG_Yes = calculate social security and tax from these settings. No = use the amounts filled in or imported (calculated by other software)}</div>
+              </div>
+              <div>
+                <label for="salary_notification" data-i18n>{LNG_Email Notification}</label>
+                <span class="form-control icon-email">
+                  <select id="salary_notification" name="salary_notification" data-options-key="salary_notification" data-attr="value:salary_notification"></select>
+                </span>
+                <div class="comment" data-i18n>{LNG_Send email notification when salary is approved}</div>
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend class="icon-excel" data-i18n>{LNG_Import/Export Settings}</legend>
+              <div>
+                <label for="salary_csv_language" data-i18n>{LNG_Language}</label>
+                <span class="form-control icon-excel">
+                  <select id="salary_csv_language" name="salary_csv_language" data-options-key="salary_csv_language" data-attr="value:salary_csv_language"></select>
+                </span>
+                <div class="comment" data-i18n>{LNG_The language code of the CSV file used for data import-export}</div>
+              </div>
+              <div>
+                <label for="salary_employee_status" data-i18n>{LNG_Employee status}</label>
+                <span class="form-control icon-star0">
+                  <select id="salary_employee_status" name="salary_employee_status" data-options-key="salary_employee_status" data-attr="value:salary_employee_status"></select>
+                </span>
+                <div class="comment" data-i18n>{LNG_Status given to employees created by importing data}</div>
+              </div>
+            </fieldset>
+            <fieldset class="submit">
+              <button type="submit" class="btn btn-primary icon-save" data-i18n>{LNG_Save}</button>
+            </fieldset>
+          </div>
+        </div>
+      </form>
+    </main>
+  </div>
+  <footer class="footer">
+    <p class="center">&copy; 2026 Now.js - <a href="https://nowjs.net">nowjs.net</a></p>
+  </footer>
+</div>

@@ -1,0 +1,82 @@
+<aside data-component="sidebar"></aside>
+<div class="main-content">
+  <div>
+    <header data-component="topbar"></header>
+    <main class="content">
+      <div class="card-groups">
+        <header>
+          <div>
+            <h1 class="icon-list" data-i18n>{LNG_List of} {LNG_Salary}</h1>
+            <p data-i18n>{LNG_Salary of all employees by month}</p>
+          </div>
+          <div>
+            <a class="btn btn-primary icon-new" href="/salary-edit?id=0" data-i18n>{LNG_Add new salary record}</a>
+            <a class="btn icon-excel" id="salary_export" href="api/salary/salaries/export?type=csv" target="_blank" data-i18n>{LNG_Download} {LNG_Salary}</a>
+          </div>
+        </header>
+        <div class="content-body">
+          <div class="tablebody">
+            <form data-table-filter="salarySalaries" class="table_nav">
+              <div>
+                <label for="year" data-i18n>{LNG_Year}</label>
+                <span class="form-control">
+                  <select name="year"></select>
+                </span>
+              </div>
+              <div>
+                <label for="month" data-i18n>{LNG_Month}</label>
+                <span class="form-control">
+                  <select name="month">
+                    <option value="" data-i18n>{LNG_all items}</option>
+                  </select>
+                </span>
+              </div>
+              <div>
+                <label for="status" data-i18n>{LNG_Status}</label>
+                <span class="form-control">
+                  <select name="status">
+                    <option value="-1" data-i18n>{LNG_all items}</option>
+                  </select>
+                </span>
+              </div>
+              <input type="search" name="search" placeholder="{LNG_Search}...">
+            </form>
+            <table class="table border fullwidth" data-table="salarySalaries" data-source="api/salary/salaries" data-default-sort="year desc, month desc, name asc"
+                   data-page-size="30" data-search-columns="name" data-show-checkbox="true"
+                   data-actions='{"approve":"Approve","recalculate":"Re-Calculate","send_email":"Send Email","delete":"Delete"}' data-action-url="api/salary/salaries/action"
+                   data-action-params="year,month,status" data-row-actions='{
+                      "view": {
+                        "title": "Details of",
+                        "className": "btn btn-info icon-info"
+                      },
+                      "edit": {
+                        "title": "Edit",
+                        "className": "btn btn-success icon-edit",
+                        "condition": "can_manage == 1"
+                      }
+                    }'>
+              <thead>
+                <tr>
+                  <th data-field="name" data-sort="name" data-cell-class="nowrap" data-i18n>{LNG_Name}</th>
+                  <th data-field="month" data-sort="month" class="center" data-cell-class="center nowrap" data-template="${period_text}" data-i18n>{LNG_Month} {LNG_Year}</th>
+                  <th data-field="basic_salary" data-sort="basic_salary" class="right" data-cell-class="right nowrap" data-format="currency" data-i18n>{LNG_Basic Salary}</th>
+                  <th data-field="deduction" data-sort="deduction" class="right" data-cell-class="right nowrap" data-format="currency" data-i18n>{LNG_Deduction}</th>
+                  <th data-field="social_security" data-sort="social_security" class="right" data-cell-class="right nowrap" data-format="currency" data-i18n>{LNG_Social Security}
+                  </th>
+                  <th data-field="tax" data-sort="tax" class="right" data-cell-class="right nowrap" data-format="currency" data-i18n>{LNG_Income Tax}</th>
+                  <th data-field="net_salary" data-sort="net_salary" class="right" data-cell-class="right nowrap salary-net" data-format="currency" data-i18n>{LNG_Net Salary}</th>
+                  <th data-field="status" data-sort="status" data-filter="true" data-type="select" data-show-all="true" data-all-value="-1" class="center" data-cell-class="center"
+                      data-template="<span class='salary-status status${status}'>${status_text}</span>" data-i18n>{LNG_Status}</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <footer class="footer">
+    <p class="center">&copy; 2026 Now.js - <a href="https://nowjs.net">nowjs.net</a></p>
+  </footer>
+</div>

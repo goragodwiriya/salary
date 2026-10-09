@@ -1,0 +1,102 @@
+<aside data-component="sidebar"></aside>
+<div class="main-content">
+  <div>
+    <header data-component="topbar"></header>
+    <main class="content">
+      <div class="card-groups">
+        <header>
+          <div>
+            <h1 class="icon-money" data-i18n>{LNG_Salary}</h1>
+            <p data-i18n>{LNG_Overview of key metrics and performance}</p>
+          </div>
+        </header>
+        <div class="content-body" data-component="api" data-endpoint="api/salary/dashboard/get">
+          <div class="ggrid">
+            <!-- ผู้ดูแลเงินเดือน -->
+            <div class="block3 large6 stat-card" data-if="data.can_manage">
+              <div class="stat-header icon-group">
+                <div class="stat-title" data-i18n>{LNG_Total Employees}</div>
+              </div>
+              <div class="stat-value" data-text="data.total_employees"></div>
+              <div class="stat-change">
+                <a href="/salary-list" data-i18n>{LNG_Active employees}</a>
+              </div>
+            </div>
+            <div class="block3 large6 stat-card positive" data-if="data.can_manage">
+              <div class="stat-header icon-money">
+                <div class="stat-title" data-i18n>{LNG_Total Salary This Month}</div>
+              </div>
+              <div class="stat-value" data-text="data.total_salary_text"></div>
+              <div class="stat-change" data-text="data.period_text"></div>
+            </div>
+            <div class="block3 large6 stat-card" data-if="data.can_manage">
+              <div class="stat-header icon-stats">
+                <div class="stat-title" data-i18n>{LNG_Average Salary}</div>
+              </div>
+              <div class="stat-value" data-text="data.average_salary_text"></div>
+              <div class="stat-change" data-i18n>{LNG_All departments}</div>
+            </div>
+            <div class="block3 large6 stat-card negative" data-if="data.can_manage && data.pending_records > 0">
+              <div class="stat-header icon-warning">
+                <div class="stat-title" data-i18n>{LNG_Pending Records}</div>
+              </div>
+              <div class="stat-value" data-text="data.pending_records"></div>
+              <div class="stat-change">
+                <a href="/salary-list?status=0" data-i18n>{LNG_Need review}</a>
+              </div>
+            </div>
+            <!-- สมาชิกทั่วไป -->
+            <div class="block3 large6 stat-card positive" data-if="!data.can_manage && data.my_salary > 0">
+              <div class="stat-header icon-money">
+                <div class="stat-title" data-i18n>{LNG_My Slip}</div>
+              </div>
+              <div class="stat-value" data-text="data.my_salary_text"></div>
+              <div class="stat-change">
+                <a data-attr="href:data.my_salary_url" target="_blank" data-text="data.period_text"></a>
+              </div>
+            </div>
+            <div class="block3 large6 stat-card" data-if="!data.can_manage">
+              <div class="stat-header icon-report">
+                <div class="stat-title" data-i18n>{LNG_Salary Records}</div>
+              </div>
+              <div class="stat-value" data-text="data.my_total_records"></div>
+              <div class="stat-change">
+                <a href="/salary" data-i18n>{LNG_View history}</a>
+              </div>
+            </div>
+            <div class="block3 large6 stat-card" data-if="!data.can_manage && data.last_salary > 0">
+              <div class="stat-header icon-clock">
+                <div class="stat-title" data-i18n>{LNG_Last Salary}</div>
+              </div>
+              <div class="stat-value" data-text="data.last_salary_text"></div>
+              <div class="stat-change">
+                <a data-attr="href:data.last_salary_url" target="_blank" data-text="data.last_salary_period"></a>
+              </div>
+            </div>
+          </div>
+          <div class="ggrid">
+            <section class="block6">
+              <h2 class="icon-stats" data-i18n>{LNG_Salary Trend}</h2>
+              <div class="salary-graph" data-component="graph" data-type="line" data-url="api/salary/dashboard/trend" data-fill-area="true"></div>
+            </section>
+            <section class="block6" data-if="data.can_manage">
+              <h2 class="icon-pie" data-i18n>{LNG_Average Salary}/{LNG_Department}</h2>
+              <div class="salary-graph" data-component="graph" data-type="pie" data-url="api/salary/dashboard/departments"></div>
+            </section>
+            <section class="block6" data-if="data.can_manage">
+              <h2 class="icon-group" data-i18n>{LNG_Employee Count}/{LNG_Department}</h2>
+              <div class="salary-graph" data-component="graph" data-type="pie" data-url="api/salary/dashboard/employees"></div>
+            </section>
+            <section class="block6" data-if="data.can_manage">
+              <h2 class="icon-stats" data-i18n>{LNG_Salary Distribution}</h2>
+              <div class="salary-graph" data-component="graph" data-type="donut" data-url="api/salary/dashboard/distribution"></div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <footer class="footer">
+    <p class="center">&copy; 2026 Now.js - <a href="https://nowjs.net">nowjs.net</a></p>
+  </footer>
+</div>

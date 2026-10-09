@@ -1,0 +1,94 @@
+{
+    "BOOLEANS": [
+        "No",
+        "Yes"
+    ],
+    "CSV_ENCODING": {
+        "UTF-8": "UTF-8",
+        "TIS-620": "TIS-620"
+    },
+    "DATE_FORMAT": "d M Y, H:i",
+    "DATE_LONG": [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+    ],
+    "DATE_SHORT": [
+        "Su",
+        "Mo",
+        "Tu",
+        "We",
+        "Th",
+        "Fr",
+        "Sa"
+    ],
+    "DOWNLOAD_ACTIONS": [
+        "Download",
+        "Open file (know file type)"
+    ],
+    "LEAVE_PERIOD": [
+        "All day",
+        "Half day morning",
+        "Half day afternoon"
+    ],
+    "LINE_REPLY_MESSAGE": "Sorry, can&#039;t reply to this message.",
+    "LOGIN_FIELDS": {
+        "username": "Username",
+        "email": "Email",
+        "phone": "Phone",
+        "id_card": "Identification No."
+    },
+    "MAIL_PROGRAMS": [
+        "Send with PHP",
+        "Send with PHPMailer+SMTP (recommended)",
+        "Send with PHPMailer+PHP Mail"
+    ],
+    "MONTH_LONG": {
+        "1": "January",
+        "2": "February",
+        "3": "March",
+        "4": "April",
+        "5": "May",
+        "6": "June",
+        "7": "July",
+        "8": "August",
+        "9": "September",
+        "10": "October",
+        "11": "November",
+        "12": "December"
+    },
+    "MONTH_SHORT": {
+        "1": "Jan",
+        "2": "Feb",
+        "3": "Mar",
+        "4": "Apr",
+        "5": "May",
+        "6": "Jun",
+        "7": "Jul",
+        "8": "Aug",
+        "9": "Sep",
+        "10": "Oct",
+        "11": "Nov",
+        "12": "Dec"
+    },
+    "PUBLISHEDS": [
+        "Unpublished",
+        "Published"
+    ],
+    "SALARY_STATUS": [
+        "Waiting for approval",
+        "Approved"
+    ],
+    "SEXES": {
+        "u": "Not specified",
+        "f": "Female",
+        "m": "Male"
+    },
+    "SMS_SENDER_COMMENT": "Some packages may not be able to assign the sender name. Please check with the service provider.",
+    "TIME_FORMAT": "H:i",
+    "YEAR_OFFSET": 0
+}
