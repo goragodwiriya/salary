@@ -1,0 +1,83 @@
+/**
+ * modules/salary/styles.css
+ * CSS เฉพาะของโมดูลเงินเดือน (ใช้คลาสมาตรฐานของเฟรมเวิร์กเป็นหลัก)
+ */
+
+/* สถานะของรายการเงินเดือนในตาราง */
+.salary-status {
+  display: inline-block;
+  padding: 2px var(--space-2, 8px);
+  border-radius: var(--radius-sm, 4px);
+  font-size: 0.85em;
+  white-space: nowrap;
+  color: #fff;
+  background-color: var(--color-warning, #f0ad4e);
+}
+
+.salary-status.status1 {
+  background-color: var(--color-success, #5cb85c);
+}
+
+/* เงินเดือนสุทธิ เน้นให้เห็นชัดในตาราง */
+.salary-net {
+  font-weight: 600;
+}
+
+/* พื้นที่กราฟของหน้าแรก */
+.salary-graph {
+  width: 100%;
+  height: 320px;
+  margin: var(--space-2, 8px) 0;
+}
+
+/* คำอธิบายรูปแบบไฟล์ในหน้านำเข้าข้อมูล */
+.salary-import-help {
+  margin: var(--space-2, 8px) 0 0 var(--space-4, 16px);
+  padding: 0;
+}
+
+.salary-import-help li {
+  margin-bottom: var(--space-1, 4px);
+}
+
+/* สลิปเงินเดือนในหน้าต่างซ้อน */
+.salary-slip-header {
+  text-align: center;
+  margin-bottom: var(--space-3, 12px);
+}
+
+.salary-slip-header h3 {
+  margin: 0;
+}
+
+.salary-slip-header p {
+  margin: var(--space-1, 4px) 0 0;
+  color: var(--text-muted, #777);
+}
+
+.salary-slip-info {
+  margin-bottom: var(--space-3, 12px);
+}
+
+.salary-slip-info div {
+  margin-bottom: var(--space-1, 4px);
+}
+
+.salary-slip-table {
+  margin-bottom: var(--space-3, 12px);
+}
+
+.salary-slip-net {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-3, 12px);
+  border-radius: var(--radius-sm, 4px);
+  background-color: var(--bg-secondary, #f5f5f5);
+  font-size: 1.2em;
+}
+
+.salary-slip-remark {
+  margin-top: var(--space-3, 12px);
+  color: var(--text-muted, #777);
+}

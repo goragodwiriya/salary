@@ -1,0 +1,91 @@
+/* ============================================================
+   modules/salary/views/print.css
+   CSS ของสลิปเงินเดือนสำหรับสั่งพิมพ์
+   โหลดต่อจาก modules/export/views/print.css ผ่าน extra_head
+   ============================================================ */
+.salary-slip {
+    width: 190mm;
+    margin: 0 auto;
+    padding: var(--sp-6, 6mm);
+    font-size: var(--t-md, 10pt);
+    color: var(--text, #1a1a2e);
+}
+
+.salary-slip .slip-header {
+    text-align: center;
+    padding-bottom: var(--sp-3, 3mm);
+    margin-bottom: var(--sp-4, 4mm);
+    border-bottom: 2px solid var(--brand, #1a3057);
+}
+
+.salary-slip .slip-header h1 {
+    margin: 0;
+    font-size: var(--t-xl, 16pt);
+    color: var(--brand, #1a3057);
+}
+
+.salary-slip .slip-header h2 {
+    margin: var(--sp-1, 1mm) 0 0;
+    font-size: var(--t-md, 10pt);
+    font-weight: normal;
+    color: var(--muted, #60708a);
+}
+
+.salary-slip .employee-info {
+    margin-bottom: var(--sp-4, 4mm);
+}
+
+.salary-slip .employee-info div {
+    margin-bottom: var(--sp-1, 1mm);
+}
+
+.salary-slip .salary-info h3 {
+    margin: 0 0 var(--sp-2, 2mm);
+    font-size: var(--t-lg, 13pt);
+    color: var(--brand-mid, #1565c0);
+}
+
+.salary-slip .salary-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: var(--sp-4, 4mm);
+}
+
+.salary-slip .salary-table th,
+.salary-slip .salary-table td {
+    padding: var(--sp-2, 2mm);
+    border: 1px solid var(--border, #cdd5e0);
+    text-align: left;
+}
+
+.salary-slip .salary-table thead th {
+    background-color: var(--brand-light, #e3edf9);
+    color: var(--brand, #1a3057);
+}
+
+.salary-slip .salary-table .amount {
+    text-align: right;
+    white-space: nowrap;
+}
+
+.salary-slip .salary-table .total {
+    background-color: var(--surface, #f5f7fa);
+}
+
+.salary-slip .net-salary td {
+    border: none;
+    border-top: 2px solid var(--brand, #1a3057);
+    padding-top: var(--sp-3, 3mm);
+    font-size: var(--t-lg, 13pt);
+}
+
+.salary-slip .net-salary .net {
+    color: var(--ok, #15803d);
+}
+
+.salary-slip .remark {
+    margin-top: var(--sp-4, 4mm);
+    padding-top: var(--sp-2, 2mm);
+    border-top: 1px dashed var(--border, #cdd5e0);
+    color: var(--muted, #60708a);
+}
