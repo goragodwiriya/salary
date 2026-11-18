@@ -1,0 +1,64 @@
+<div class="salary-slip">
+  <div class="salary-slip-header">
+    <h3 data-text="name"></h3>
+    <p data-text="period_text"></p>
+  </div>
+  <div class="salary-slip-info">
+    <div data-if="id_card != ''"><span data-i18n>{LNG_Identification No.}</span> : <strong data-text="id_card"></strong></div>
+    <div data-if="position != ''"><span data-i18n>{LNG_Position}</span> : <strong data-text="position"></strong></div>
+    <div data-if="department != ''"><span data-i18n>{LNG_Department}</span> : <strong data-text="department"></strong></div>
+    <div><span data-i18n>{LNG_Status}</span> : <strong data-text="status_text"></strong></div>
+  </div>
+  <table class="table border fullwidth salary-slip-table">
+    <thead>
+      <tr>
+        <th colspan="2" data-i18n>{LNG_Income}</th>
+      </tr>
+    </thead>
+    <tbody data-for="item in incomes">
+      <template>
+        <tr>
+          <td data-text="item.label"></td>
+          <td class="right nowrap" data-text="item.amount"></td>
+        </tr>
+      </template>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th data-i18n>{LNG_Total income}</th>
+        <th class="right nowrap" data-text="total_income"></th>
+      </tr>
+    </tfoot>
+  </table>
+  <table class="table border fullwidth salary-slip-table" data-if="deductions.length > 0">
+    <thead>
+      <tr>
+        <th colspan="2" data-i18n>{LNG_Deduction}</th>
+      </tr>
+    </thead>
+    <tbody data-for="item in deductions">
+      <template>
+        <tr>
+          <td data-text="item.label"></td>
+          <td class="right nowrap" data-text="item.amount"></td>
+        </tr>
+      </template>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th data-i18n>{LNG_Total deductions}</th>
+        <th class="right nowrap" data-text="total_deduction"></th>
+      </tr>
+    </tfoot>
+  </table>
+  <div class="salary-slip-net">
+    <span data-i18n>{LNG_Net Salary}</span>
+    <strong data-text="net_salary"></strong>
+  </div>
+  <div class="salary-slip-remark" data-if="remark != ''">
+    <span data-i18n>{LNG_Remark}</span> : <span data-text="remark"></span>
+  </div>
+  <div class="submit right">
+    <a class="btn btn-primary icon-print" data-attr="href:print_url" target="_blank" data-i18n>{LNG_Print}</a>
+  </div>
+</div>
